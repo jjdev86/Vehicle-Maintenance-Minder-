@@ -1,0 +1,31 @@
+const path = require('path');
+const SRC_DIR = path.join(__dirname, 'client/src');
+const DIST_DIR = path.join(__dirname, 'client/dist');
+
+module.exports = {
+  entry: `${DIST_DIR}/index.js`,
+  mode: 'development',
+  performance: { hints: false },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        include: SRC_DIR,
+        use: {
+          loader: 'babel-loader',
+           options: {
+            "presets": [
+              "@babel/preset-env",
+              "@babel/preset-react"
+            ]
+           }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader","css-loader"]
+      }
+    ]
+  }
+};
