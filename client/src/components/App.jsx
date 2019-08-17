@@ -1,19 +1,84 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import Vehicle from './Vehicle.jsx';
+import AddVehicle from './AddVehicle.jsx';
 
+
+const Wrapper = styled.div`
+    width: 100%;
+`;
+const Subwrapper = styled.div`
+    width: 80%;
+    margin: 0 10% 0 10%;
+    background-color: white;
+    min-height: 100vh;
+`;
+const Username = styled.a`
+    display: grid;
+    text-align: right !important;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+const Header = styled.header`
+background-color: #AED6F1;
+min-height: 10vh;
+display: grid;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: black;
+`;
+
+const Add = styled.button`
+background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline;
+font-size: 12px;
+margin: 2px 1px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+width: fit-content;
+`;
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            test: 'hello'
+            test: 'hello',
+            showPopup: false
         }
     }
 
+    toggleAddVehicle() {
+        this.setState({ showPopup: !this.state.showPopup });
+    }
     render() {
         return (
-            <div>
-                <h1>Hello World!</h1>
-            </div>
+            <Wrapper>
+                <Subwrapper>
+                    <Username>
+                        username
+                    </Username>
+                    <Header>
+                        <h1>Vehicle Maintenance Minder</h1>
+                        {/* Add new Vehicle */}
+                        <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+                    </Header>
+                    {/* adds the vehicles added by the user */}
+                    <Vehicle />
+                    {this.state.showPopup ?
+                        <AddVehicle saveVehicle={this.toggleAddVehicle.bind(this)}
+                        />
+                        : null
+                    }
+                </Subwrapper>
+            </Wrapper>
+
         )
     }
 }
