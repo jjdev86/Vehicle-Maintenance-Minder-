@@ -4,7 +4,9 @@
   "description": "A car maintenance reminder that helps track your car's maintenance events.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "build-react": "webpack -d --watch",
+    "start": "concurrently \" npm run build-react \" \" nodemon server/app.js \""
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,23 @@
   },
   "homepage": "https://github.com/jjdev86/Vehicle-Maintenance-Minder-#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
   }
 }
