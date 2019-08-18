@@ -1,4 +1,4 @@
-const { createUser } = require('../model/index');
+const { createUser, createCarRecord } = require('../model/index');
 
 module.exports = {
   createUser: {
@@ -19,7 +19,10 @@ module.exports = {
   },
   newCar: {
     post: (req, res) => {
-
+      console.log(req.body["car-year"])
+      createCarRecord(req.body)
+        .then(response => res.send(response))
+        .catch(err => res.send(err));
     }
   }
 };
