@@ -31,16 +31,18 @@ pool.getConnection((err, connection) => {
 pool.query = util.promisify(pool.query);
 
 const createUser = async (body) => {
-  const { user, phone } = body;
+  // const { user, phone } = body;
   const query = `INSERT INTO users (username, phone_number)
                   VALUES('${body.username}', '${body.phone}')`;
-  let insertUser = await pool.query(query)
+  let insertUser = await pool.query(query);
   try {
     const query = `SELECT * FROM users
                     WHERE user_id = ${insertUser.insertId}`;
     let user = await pool.query(query);
+    console.log(user, `return from db`)
     return [{ "user_id": user[0].user_id, "username": user[0].username }];
   } catch (err) {
+    console.log(err, `error`)
     return err;
   }
 };
@@ -54,7 +56,6 @@ const createCarRecord = async (body) => {
 
   let insertcar = await pool.query(query)
   try {
-    console.log(insertcar, `car insertCar`)
     let carId = insertcar.insertId;
     let userId = body.user_id;
     // create a maintenace record for vehicle
@@ -74,8 +75,25 @@ const createCarRecord = async (body) => {
   }
 }
 
+const userCars = async (userId) => {
+  const query = `SELECT * 
+  FROM cars
+  WHERE userId = ${userId}`;
+
+  let getCars = await pool.query(query)
+  try {
+    return getCars;
+  } catch(err) {
+    return err;
+  }
+};
+
+const updateMileage = async (carId) => {
+  // update the mileage by carId
+};
 
 module.exports = {
   createUser,
-  createCarRecord
+  createCarRecord,
+  userCars
 }

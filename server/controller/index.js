@@ -1,8 +1,9 @@
-const { createUser, createCarRecord } = require('../model/index');
+const { createUser, createCarRecord, userCars } = require('../model/index');
 
 module.exports = {
   createUser: {
     post: (req, res) => {
+      console.log(req.body, `from client`)
       createUser(req.body)
         .then((data) => {
           res.send(data);
@@ -14,12 +15,13 @@ module.exports = {
   },
   userCars: {
     get: (req, res) => {
-
+      userCars(Number(req.query.userId))
+      .then(response => res.send(response))
+      .catch(err => res.send(err));
     }
   },
   newCar: {
     post: (req, res) => {
-      console.log(req.body["car-year"])
       createCarRecord(req.body)
         .then(response => res.send(response))
         .catch(err => res.send(err));
