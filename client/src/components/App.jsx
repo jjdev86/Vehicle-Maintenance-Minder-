@@ -91,7 +91,6 @@ class App extends Component {
                         {this.state.userId ?
                             <>
                                 <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
-                                {/* <Vehicle cars={this.state.carData} /> */}
                             </>
                             :
                             <AddUser createUser={this.addUser.bind(this)} />
@@ -102,7 +101,9 @@ class App extends Component {
                     {this.state.showPopup ?
                         <AddVehicle saveVehicle={this.updateCarData.bind(this)} user_id={this.state.userId}
                         />
-                        : <Vehicle cars={this.state.carData} />
+                        : this.state.carData.length ?
+                            <Vehicle cars={this.state.carData} />
+                            : null
                     }
                 </Subwrapper>
             </Wrapper>
