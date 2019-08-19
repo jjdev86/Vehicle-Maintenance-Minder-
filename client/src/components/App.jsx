@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Vehicle from './Vehicle.jsx';
 import AddVehicle from './AddVehicle.jsx';
-
+import AddUser from './AddUser.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -50,24 +50,39 @@ class App extends Component {
         super(props);
         this.state = {
             test: 'hello',
-            showPopup: false
+            showPopup: false,
+            userId: null,
+            username: '',
+            userCreated: false
         }
     }
-
+    // toggle the addVehicle component
     toggleAddVehicle() {
         this.setState({ showPopup: !this.state.showPopup });
     }
+
+    addUser(user) {
+      this.setState({ userId: user.user_id, username: user.username});
+    }
+
+    
     render() {
         return (
             <Wrapper>
                 <Subwrapper>
                     <Username>
-                        username
+                        {this.state.username}
                     </Username>
                     <Header>
                         <h1>Vehicle Maintenance Minder</h1>
-                        {/* Add new Vehicle */}
-                        <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+                        {/* if the userId is null, ask user to create account
+                            else, display the user's cars.
+                        */}
+                        {this.state.userId ? 
+                          <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+                          :
+                          <AddUser createUser={this.addUser.bind(this)}/>
+                        }
                     </Header>
                     {/* adds the vehicles added by the user */}
                     <Vehicle />
