@@ -3,3 +3,7 @@ node_modules
 
 ## bundle file
 bundle.js
+
+## ENV File
+.env
+
