@@ -67,20 +67,25 @@ class AddVehicle extends Component {
     this.setState({
       [name]: event.target.value
     }, () => {
-      console.log(this.state);
+      // console.log(this.state);
     })
   }
 
   saveCar(event) {
     event.preventDefault();
     axios.post(
-      '/newVehicle',
+      '/newCar',
       {
-
+        user_id: this.props.user_id,
+        "car-year": this.state["car-year"],
+        "car-make": this.state["car-make"],
+        "car-model": this.state["car-model"],
+        "car-model-trim": this.state["car-model-trim"],
+        "car-mileage": this.state["car-mileage"],
       })
       .then(response => {
         console.log(response, `RESPONSE FROM SERVER`);
-        this.props.saveVehicle();
+        this.props.saveVehicle(response.data);
       })
       .catch(err => {
         console.log(err, `THIS IS AN ERROR`);
@@ -92,7 +97,7 @@ class AddVehicle extends Component {
       <Wrapper>
         <Innerwrap>
           <TableDiv>
-            <Table style={{ "border": "1px solid black", "border-collapse": "collapse", "align": "center" }}>
+            <Table style={{ "border": "1px solid black", borderCollapse: "collapse", "align": "center" }}>
               <tbody>
                 <tr>
                   <th>Year:</th>

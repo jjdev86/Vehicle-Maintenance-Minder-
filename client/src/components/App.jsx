@@ -49,7 +49,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            test: 'hello',
+            carData: [],
             showPopup: false,
             userId: null,
             username: '',
@@ -62,34 +62,47 @@ class App extends Component {
     }
 
     addUser(user) {
-      this.setState({ userId: user.user_id, username: user.username});
+        this.setState({ userId: user.user_id, username: user.username });
     }
 
-    
+    updateCarData(data) {
+        this.setState({ carData: data }, () => {
+            console.log(this.state.carData, 'App car Data was set')
+            this.toggleAddVehicle();
+        });
+        // this.setState({ carData: data });
+    }
     render() {
         return (
             <Wrapper>
                 <Subwrapper>
                     <Username>
-                        {this.state.username}
+                        {this.state.userId ?
+                            `Welcome ${this.state.username}`
+                            :
+                            null
+                        }
                     </Username>
                     <Header>
                         <h1>Vehicle Maintenance Minder</h1>
                         {/* if the userId is null, ask user to create account
                             else, display the user's cars.
                         */}
-                        {this.state.userId ? 
-                          <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
-                          :
-                          <AddUser createUser={this.addUser.bind(this)}/>
+                        {this.state.userId ?
+                            <>
+                                <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+                                {/* <Vehicle cars={this.state.carData} /> */}
+                            </>
+                            :
+                            <AddUser createUser={this.addUser.bind(this)} />
                         }
                     </Header>
                     {/* adds the vehicles added by the user */}
-                    <Vehicle />
+                    {/* <Vehicle /> */}
                     {this.state.showPopup ?
-                        <AddVehicle saveVehicle={this.toggleAddVehicle.bind(this)}
+                        <AddVehicle saveVehicle={this.updateCarData.bind(this)} user_id={this.state.userId}
                         />
-                        : null
+                        : <Vehicle cars={this.state.carData} />
                     }
                 </Subwrapper>
             </Wrapper>

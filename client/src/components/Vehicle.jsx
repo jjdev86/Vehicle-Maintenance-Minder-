@@ -33,15 +33,16 @@ class Vehicle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: props.cars
     }
   }
 
 
   render() {
+    console.log(this.state.data, `Vehicle State`)
     return (
       <Wrapper>
-        <Table style={{ "border": "1px solid black", "border-collapse": "collapse" }}>
+        <Table style={{ "border": "1px solid black", "borderCollapse": "collapse" }}>
           <tbody>
             <tr>
               <th>Year</th>
@@ -51,14 +52,17 @@ class Vehicle extends Component {
               <th>Mileage</th>
               <th>Maintenance</th>
             </tr>
-            <tr>
-              <td>2003</td>
-              <td>Chevrolet</td>
-              <td>Camaro</td>
-              <td>LT</td>
-              <td>1000</td>
-              <td>oil change</td>
-            </tr>
+            {this.state.data.map(car => (
+              <tr key={car.car_id}>
+                <td>{car.car_year}</td>
+                <td>{car.car_make}</td>
+                <td>{car.car_model}</td>
+                <td>{car.car_model_trim}</td>
+                <td>{car.car_mileage}</td>
+                <td>oil change</td>
+              </tr>
+            ))}
+
           </tbody>
         </Table>
       </Wrapper>
