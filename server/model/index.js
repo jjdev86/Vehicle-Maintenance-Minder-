@@ -92,8 +92,31 @@ const updateMileage = async (carId) => {
   // update the mileage by carId
 };
 
+// get all lastUpdated cars from last 6 months
+  // it should contain the user, car and maintenance data
+const last6Months = async () => {
+  var subtract6months = moment().add(-6, 'months').format("YYYY-MM-DD HH:mm:ss");
+  var current = moment().format("YYYY-MM-DD HH:mm:ss");
+  const query = `SELECT users.user_id, username, phone_number, car_id, car_model, car_mileage, lastUpdated, maintenance_type, months_schedule
+  FROM users 
+    JOIN cars 
+      ON users.user_id = cars.userId
+    JOIN maintenance
+      ON cars.car_id = maintenance.carId
+    WHERE lastUpdated >= '${subtract6months}' AND lastUpdated < '${current}'`;
+
+    let carsquery = await pool.query(query)
+    try {
+      return carsquery
+    } catch(err) {
+      console.log(err)
+      return err;
+    }
+};
+
 module.exports = {
   createUser,
   createCarRecord,
-  userCars
+  userCars,
+  last6Months
 }

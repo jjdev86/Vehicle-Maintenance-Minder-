@@ -5,5 +5,6 @@ const controller = require('../controller/index');
 router.post('/newCar', controller.newCar.post);
 router.get('/userCars', controller.userCars.get); // gets all cars for 1 user
 router.post('/newUser', controller.createUser.post);
+router.get('/last6', controller.getlast6.get);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const { createUser, createCarRecord, userCars } = require('../model/index');
+const { createUser, createCarRecord, userCars, last6Months } = require('../model/index');
 
 module.exports = {
   createUser: {
@@ -25,6 +25,13 @@ module.exports = {
       createCarRecord(req.body)
         .then(response => res.send(response))
         .catch(err => res.send(err));
+    }
+  },
+  getlast6: {
+    get: (req, res) => {
+      last6Months()
+      .then(response => res.send(response))
+      .catch(err => res.send(err));
     }
   }
 };
