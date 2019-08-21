@@ -6,6 +6,10 @@ import AddUser from './AddUser.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-color: #DCDCDC;
 `;
 const Subwrapper = styled.div`
@@ -20,14 +24,21 @@ const Username = styled.a`
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
+    font-size: 14px;
 `;
 const Header = styled.header`
-background-color: #4682B4;
-min-height: 10vh;
-display: grid;
-justify-content: center;
-font-size: calc(10px + 2vmin);
-color: black;
+    background-color: #4682B4;
+    min-height: 10vh;
+    display: grid;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+    #headerName {
+        font-size: 40px;
+    }
+    a {
+        color: white;
+    }
 `;
 
 const Add = styled.button`
@@ -77,26 +88,29 @@ class App extends Component {
         return (
             <Wrapper>
                 <Subwrapper>
-                    <Username>
-                        {this.state.userId ?
-                            `Welcome ${this.state.username}`
-                            :
-                            null
-                        }
-                    </Username>
+
                     <Header>
-                        <h1>Vehicle Maintenance Minder</h1>
-                        {/* if the userId is null, ask user to create account
+                        <h1 id={"headerName"}>Vehicle Maintenance Minder</h1>
+                        <Username>
+                            {this.state.userId ?
+                                <a>
+                                    Welcome ${this.state.username}
+                                </a>
+                                :
+                                null
+                            }
+                        </Username>
+                    </Header>
+                    {/* if the userId is null, ask user to create account
                             else, display the user's cars.
                         */}
-                        {this.state.userId ?
-                            <>
-                                <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
-                            </>
-                            :
-                            <AddUser createUser={this.addUser.bind(this)} />
-                        }
-                    </Header>
+                    {this.state.userId ?
+                        <>
+                            <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+                        </>
+                        :
+                        <AddUser createUser={this.addUser.bind(this)} />
+                    }
                     {/* adds the vehicles added by the user */}
                     {/* <Vehicle /> */}
                     {this.state.showPopup ?

@@ -6,6 +6,9 @@ const Wrapper = styled.div`
 text-align: center;
 display: grid;
 width: 100%;
+ .greeting {
+   padding: 10px 0;
+ }
 `;
 
 const Form = styled.form`
@@ -81,19 +84,22 @@ class AddUser extends Component {
   render() {
     return (
       <Wrapper>
-        Welcome! Please create a user.
+        <h3 className={"greeting"}>
+          Welcome!
+          Please create a user to add a vehicle.
+        </h3>
         <Form>
-        {/* <form style={{ display: 'flex' }}> */}
-        <label htmlFor={"username"} >
-          Username:
+          {/* <form style={{ display: 'flex' }}> */}
+          <label htmlFor={"username"} >
+            Username:
         </label>
           <input type="text" name="username" value={this.state.username} onChange={(e) => this.onStateChage(e)} />
-        <label htmlFor={"phone"}>
-          Phone Number:
+          <label htmlFor={"phone"}>
+            Phone Number:
         </label>
           <input type="tel" name="phone" value={this.state.phone} pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="123-456-1234" onChange={(e) => this.onStateChage(e)} />
-          <input id={"submitBtn"}type="button" value="Submit" onClick={(e) => this.onSubmit(e)}></input>
-        {/* </form> */}
+          <input id={"submitBtn"} type="button" value="Submit" onClick={(e) => this.onSubmit(e)}></input>
+          {/* </form> */}
         </Form>
       </Wrapper>
     );

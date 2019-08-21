@@ -29,38 +29,38 @@ app.use('/', routes);
 // after message is sent
 // update the car record lastUpdated to current Date
 
-// cron.schedule('00 */1 * * * * ', () => {
-//   console.log('--------');
+cron.schedule('00 */1 * * * * ', () => {
+  console.log('--------');
 
-//   const oil = 'Change Engine Oil and Filter';
-//   const tireRotation = 'Rotate Tires, Inspect Tire Wear, $ Adjust Tire Pressure';
+  const oil = 'Change Engine Oil and Filter';
+  const tireRotation = 'Rotate Tires, Inspect Tire Wear, $ Adjust Tire Pressure';
 
-//   last6Months()
-//     .then(data => {
-//       data.forEach(car => {
-//         let lastUpdate = moment(`${car.lastUpdated}`).format('YYYY-MM-DD HH:mm:ss');
-//         let now = moment();
-//         let add3Months = moment(`${lastUpdate}`).add(3, 'months').isSame(now, 'week');
-//         let add6Months = moment(`${lastUpdate}`).add(6, 'months').isSame(now, 'week');
-//         let message = {};
-//         message.body = `Hi ${car.username}, Your vehicle is due for maintenance: ${car.maintenance_type}`;
-//         message.from = '+19163183202';
-//         message.to = '+19166040819';
+  last6Months()
+    .then(data => {
+      data.forEach(car => {
+        let lastUpdate = moment(`${car.lastUpdated}`).format('YYYY-MM-DD HH:mm:ss');
+        let now = moment();
+        let add3Months = moment(`${lastUpdate}`).add(3, 'months').isSame(now, 'week');
+        let add6Months = moment(`${lastUpdate}`).add(6, 'months').isSame(now, 'week');
+        let message = {};
+        message.body = `Hi ${car.username}, Your vehicle is due for maintenance: ${car.maintenance_type}`;
+        message.from = '+19163183202';
+        message.to = '+19166040819';
 
-//         if (car.maintenance_type === oil) {
-//           if (add3Months) {
-//             sendMessage(message);
-//           }
-//         }
-//         if (car.maintenance_type === tireRotation) {
-//           if (add6Months) {
-//             sendMessage(message);
-//           }
-//         }
-//       });
-//     })
-//     .catch(err => console.log(err));
-// });
+        if (car.maintenance_type === oil) {
+          if (add3Months) {
+            sendMessage(message);
+          }
+        }
+        if (car.maintenance_type === tireRotation) {
+          if (add6Months) {
+            sendMessage(message);
+          }
+        }
+      });
+    })
+    .catch(err => console.log(err));
+});
 
 
 
