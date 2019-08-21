@@ -6,10 +6,11 @@ import AddUser from './AddUser.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
+    background-color: #DCDCDC;
 `;
 const Subwrapper = styled.div`
-    width: 80%;
-    margin: 0 10% 0 10%;
+    width: 60%;
+    margin: 0 20% 0 20%;
     background-color: white;
     min-height: 100vh;
 `;
@@ -21,7 +22,7 @@ const Username = styled.a`
     }
 `;
 const Header = styled.header`
-background-color: #AED6F1;
+background-color: #4682B4;
 min-height: 10vh;
 display: grid;
 justify-content: center;
