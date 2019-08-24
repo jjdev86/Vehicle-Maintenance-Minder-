@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Vehicle from './Vehicle.jsx';
+import Vehicle from './AddVehicle.jsx';
 import AddVehicle from './AddVehicle.jsx';
 import AddUser from './AddUser.jsx';
+import Login from './login.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -75,40 +76,40 @@ class App extends Component {
     }
     render() {
         return (
-            <Wrapper>
-                <Subwrapper>
-                    <Username>
-                        {this.state.userId ?
-                            `Welcome ${this.state.username}`
-                            :
-                            null
-                        }
-                    </Username>
-                    <Header>
-                        <h1>Vehicle Maintenance Minder</h1>
-                        {/* if the userId is null, ask user to create account
-                            else, display the user's cars.
-                        */}
-                        {this.state.userId ?
-                            <>
-                                <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
-                            </>
-                            :
-                            <AddUser createUser={this.addUser.bind(this)} />
-                        }
-                    </Header>
-                    {/* adds the vehicles added by the user */}
-                    {/* <Vehicle /> */}
-                    {this.state.showPopup ?
-                        <AddVehicle saveVehicle={this.updateCarData.bind(this)} user_id={this.state.userId}
-                        />
-                        : this.state.carData.length ?
-                            <Vehicle cars={this.state.carData} />
-                            : null
-                    }
-                </Subwrapper>
-            </Wrapper>
-
+            // <Wrapper>
+            //     <Subwrapper>
+            //         <Username>
+            //             {this.state.userId ?
+            //                 `Welcome ${this.state.username}`
+            //                 :
+            //                 null
+            //             }
+            //         </Username>
+            //         <Header>
+            //             <h1>Vehicle Maintenance Minder</h1>
+            //             {/* if the userId is null, ask user to create account
+            //                 else, display the user's cars.
+            //             */}
+            //             {this.state.userId ?
+            //                 <>
+            //                     <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+            //                 </>
+            //                 :
+            //                 <AddUser createUser={this.addUser.bind(this)} />
+            //             }
+            //         </Header>
+            //         {/* adds the vehicles added by the user */}
+            //         {/* <Vehicle /> */}
+            //         {this.state.showPopup ?
+            //             <AddVehicle saveVehicle={this.updateCarData.bind(this)} user_id={this.state.userId}
+            //             />
+            //             : this.state.carData.length ?
+            //                 <Vehicle cars={this.state.carData} />
+            //                 : null
+            //         }
+            //     </Subwrapper>
+            // </Wrapper>
+            <Login></Login>
         )
     }
 }

@@ -6,4 +6,5 @@ bundle.js
 
 ## ENV File
 .env
-
+## DS_Store
+.DS_Store
