@@ -7,6 +7,10 @@ import Login from './login.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-color: #DCDCDC;
 `;
 const Subwrapper = styled.div`
@@ -21,14 +25,21 @@ const Username = styled.a`
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
+    font-size: 14px;
 `;
 const Header = styled.header`
-background-color: #4682B4;
-min-height: 10vh;
-display: grid;
-justify-content: center;
-font-size: calc(10px + 2vmin);
-color: black;
+    background-color: #4682B4;
+    min-height: 10vh;
+    display: grid;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+    #headerName {
+        font-size: 40px;
+    }
+    a {
+        color: white;
+    }
 `;
 
 const Add = styled.button`
