@@ -7,7 +7,6 @@ const FormBox = styled.div`
   width: 300px;
   height: 250px;
   border: 0px solid;
-
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   padding: 1.25rem;
   position: absolute;
@@ -29,7 +28,7 @@ const FormWrapper = styled.div`
     display: block;
     font: 400 11px system-ui;
   }
-  input[type=text] {
+  input[type=text], input[type=password] {
     width: 100%;
     outline: 0;
     border:0;
@@ -84,16 +83,28 @@ class Login extends Component {
     document.body.style.backgroundColor = null;
   }
 
-  onEventChange(e) {
-
+  eventChange(e) {
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState({ [name]: value });
   }
+
+  loginCheck(e) {
+    e.preventDefault();
+    // call the function from App.jsx to validate the login
+    // this.props.validateUser(this.state);
+    // working
+    console.log('Login was clicked');
+    console.log(this.state, `login credentials`);
+  }
+
   render() {
     return (
       <FormBox>
         <FormWrapper>
-          <input type="text" placeholder="Username" />
-          <input type="text" placeholder="Password" />
-          <input className="button" type="submit" value="Login" />
+          <input type="text" name="username" placeholder="Username" onChange={(e) => this.eventChange(e)} />
+          <input type="password" name="password" placeholder="Password" onChange={(e) => this.eventChange(e)} />
+          <input className="button" type="submit" value="Login" onClick={(e) => this.loginCheck(e)} />
           {/* <button className="button-login">Login</button> */}
           <p>Not registered? <a href="#" className="forgot-pass">Create an account</a></p>
         </FormWrapper>

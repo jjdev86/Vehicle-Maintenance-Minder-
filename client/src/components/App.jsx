@@ -4,6 +4,7 @@ import Vehicle from './AddVehicle.jsx';
 import AddVehicle from './AddVehicle.jsx';
 import AddUser from './AddUser.jsx';
 import Login from './login.jsx';
+import NewAccount from './createAccount.jsx';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -120,7 +121,8 @@ class App extends Component {
             //         }
             //     </Subwrapper>
             // </Wrapper>
-            <Login></Login>
+            // <Login></Login>
+            <NewAccount />
         )
     }
 }
