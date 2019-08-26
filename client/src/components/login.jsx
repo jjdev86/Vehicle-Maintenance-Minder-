@@ -22,7 +22,6 @@ const FormWrapper = styled.div`
   left: 20%;
   top: 20%;
   transform: translate(-20%, -20%);
-
   input,p {
     font-family: "Roboto", sans-serif;
     display: block;

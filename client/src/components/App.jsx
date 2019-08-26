@@ -6,13 +6,39 @@ import AddUser from './AddUser.jsx';
 import Login from './login.jsx';
 import NewAccount from './createAccount.jsx';
 
-const Wrapper = styled.div`
+const MainWrapper = styled.div`
+    height: 100%;
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+const Body = styled.div`
+    height: 95%;
     width: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-color: #DCDCDC;
+    background-color: #fff;
+    position: absolute;
+    margin: 120px 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+`;
+
+const Header1 = styled.header`
+    width: 100%;
+    height: 130px;
+    background-color: #32DBC6;
+    top: 0;
+    bottom:0;
+    position:fixed;
+    // overflow-y:scroll;
+    // overflow-x:hidden;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+`;
+const Container = styled.div`
 `;
 const Subwrapper = styled.div`
     width: 60%;
@@ -67,9 +93,21 @@ class App extends Component {
             showPopup: false,
             userId: null,
             username: '',
-            userCreated: false
+            userCreated: false,
+            newAccount: false
         }
     }
+
+    componentDidMount() {
+        document.body.classList.add("body-model-open");
+        document.body.style.backgroundColor = "#ebefd0";
+    }
+
+    componentWillUnmount() {
+        document.body.classList.remove("body-model-open");
+        document.body.style.backgroundColor = null;
+    }
+
     // toggle the addVehicle component
     toggleAddVehicle() {
         this.setState({ showPopup: !this.state.showPopup });
@@ -88,41 +126,46 @@ class App extends Component {
     }
     render() {
         return (
-            // <Wrapper>
-            //     <Subwrapper>
-            //         <Username>
-            //             {this.state.userId ?
-            //                 `Welcome ${this.state.username}`
-            //                 :
-            //                 null
-            //             }
-            //         </Username>
-            //         <Header>
-            //             <h1>Vehicle Maintenance Minder</h1>
-            //             {/* if the userId is null, ask user to create account
-            //                 else, display the user's cars.
-            //             */}
-            //             {this.state.userId ?
-            //                 <>
-            //                     <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
-            //                 </>
-            //                 :
-            //                 <AddUser createUser={this.addUser.bind(this)} />
-            //             }
-            //         </Header>
-            //         {/* adds the vehicles added by the user */}
-            //         {/* <Vehicle /> */}
-            //         {this.state.showPopup ?
-            //             <AddVehicle saveVehicle={this.updateCarData.bind(this)} user_id={this.state.userId}
-            //             />
-            //             : this.state.carData.length ?
-            //                 <Vehicle cars={this.state.carData} />
-            //                 : null
-            //         }
-            //     </Subwrapper>
-            // </Wrapper>
-            // <Login></Login>
-            <NewAccount />
+            <MainWrapper>
+                <Header1>
+                </Header1>
+                <Body>
+
+                </Body>
+                {/* <Wrapper> */}
+                {/* <Subwrapper>
+                    <Username>
+                        {this.state.userId ?
+                            `Welcome ${this.state.username}`
+                            :
+                            null
+                        }
+                    </Username>
+                    <Header>
+                        <h1>Vehicle Maintenance Minder</h1>
+                        {/* if the userId is null, ask user to create account
+                            else, display the user's cars.
+                        */}
+                {/* {this.state.userId ?
+                            <>
+                                <Add onClick={this.toggleAddVehicle.bind(this)}>Add Vehicle</Add>
+                            </>
+                            :
+                            <AddUser createUser={this.addUser.bind(this)} />
+                        } */}
+                {/* </Header>
+                    {this.state.showPopup ?
+                        <AddVehicle saveVehicle={this.updateCarData.bind(this)} user_id={this.state.userId}
+                        />
+                        : this.state.carData.length ?
+                            <Vehicle cars={this.state.carData} />
+                            : null
+                    }
+                // </Subwrapper> */}
+                {/* </Wrapper> */}
+            </MainWrapper>
+            // // <Login></Login>
+            // <NewAccount />
         )
     }
 }
